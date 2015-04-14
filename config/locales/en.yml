@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  messages:
+    logged_in: 'You have successfully logged in.'
+    user_updated: 'User was successfully updated.'

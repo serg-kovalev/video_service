@@ -32,6 +32,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Integration with YouTube
+gem 'yt', '~> 0.14.3'
+# Integration with Facebook
+gem 'koala', '~> 2.0.0'
+gem 'devise', '~> 3.4.1'
+gem 'omniauth', '~> 1.2.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
