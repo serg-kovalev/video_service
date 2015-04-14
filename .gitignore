@@ -1,0 +1,8 @@
+.idea/
+tmp/
+log/*
+
+db/development_structure.sql
+coverage
+.ruby-version
+.ruby-gemset
