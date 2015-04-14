@@ -38,6 +38,7 @@ gem 'yt', '~> 0.14.3'
 gem 'koala', '~> 2.0.0'
 gem 'devise', '~> 3.4.1'
 gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-facebook', '~> 2.0.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

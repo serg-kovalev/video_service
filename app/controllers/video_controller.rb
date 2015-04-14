@@ -1,4 +1,4 @@
-class VideoUploadController < ApplicationController
+class VideoController < ApplicationController
   def index
     render text: 'This is a test'
   end
