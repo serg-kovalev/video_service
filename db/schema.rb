@@ -24,6 +24,10 @@ ActiveRecord::Schema.define(version: 20150414194625) do
     t.string   "username"
   end
 
+  add_index "authorizations", ["provider"], name: "index_authorizations_on_provider"
+  add_index "authorizations", ["uid"], name: "index_authorizations_on_uid"
+  add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id"
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

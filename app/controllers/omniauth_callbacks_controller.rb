@@ -2,7 +2,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_filter :authenticate_user!
 
   def all
-    # p env["omniauth.auth"]
+    Rails.logger.info env["omniauth.auth"].inspect
     user = User.from_omniauth(env['omniauth.auth'], current_user)
     if user.persisted?
       flash[:notice] = I18n.t('messages.logged_in')
@@ -20,4 +20,5 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   alias_method :facebook, :all
+  alias_method :google_oauth2, :all
 end

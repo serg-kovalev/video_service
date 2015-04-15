@@ -13,4 +13,7 @@ class Authorization < ActiveRecord::Base
     self.username = facebook_data['username']
     self.save
   end
+
+  def fetch_details_from_google_oauth2
+  end
 end

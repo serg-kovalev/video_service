@@ -1,6 +1,5 @@
 class VideoController < ApplicationController
   def index
-    render text: 'This is a test'
   end
 
   def show

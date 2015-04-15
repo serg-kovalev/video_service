@@ -21,6 +21,10 @@
 
 en:
   hello: "Hello world"
+  simple_form:
+    labels:
+      user:
+        username: Username
   messages:
     logged_in: 'You have successfully logged in.'
     user_updated: 'User was successfully updated.'

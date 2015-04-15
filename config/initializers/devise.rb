@@ -236,8 +236,13 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'], 
     { 
-      :scope => 'email, offline_access', 
+      :scope => 'public_profile, email', 
       :client_options => { :ssl => { :ca_file => '/usr/lib/ssl/certs/ca-certificates.crt' } } 
+    }
+  config.omniauth :google_oauth2, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET'], 
+    {
+      :scope => 'email, userinfo.profile, youtube', 
+      :client_options => { :ssl => { :ca_file => '/usr/lib/ssl/certs/ca-certificates.crt' } }
     }
 
   # ==> Warden configuration

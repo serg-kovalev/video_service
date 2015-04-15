@@ -2,10 +2,10 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable
+         :recoverable, :rememberable, :trackable, :validatable
+  devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
   validates_presence_of :email
-  has_many :authorizations
+  has_many :authorizations, dependent: :destroy
 
   def self.new_with_session(params,session)
     if session['devise.user_attributes']
@@ -19,21 +19,24 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth, current_user)
+    data = auth.info
     authorization = Authorization.where(:provider => auth.provider, :uid => auth.uid.to_s, :token => auth.credentials.token, :secret => auth.credentials.secret).first_or_initialize
     
     if authorization.user.blank?
-      user = current_user || User.where('email = ?', auth["info"]["email"]).first
+      user = current_user || User.where('email = ?', data.email).first
       if user.blank?
         user = User.new
         user.password = Devise.friendly_token[0,10]
-        user.name = auth.info.name
-        user.email = auth.info.email
+        user.name = data.name
+        user.email = data.email
         user.save
       end
       
-      authorization.username = auth.info.nickname
+      authorization.username = data.nickname
       authorization.user_id = user.id
       authorization.save
+      # remove outdated authorizations
+      Authorization.where(:provider => auth.provider, :uid => auth.uid.to_s).order(:updated_at).all[0..-2].each(&:destroy)
     end
 
     authorization.user
