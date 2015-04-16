@@ -2,7 +2,7 @@ class VideosController < ApplicationController
   before_action :check_connection, except: [:new]
 
   def index
-    @videos = Video.order('created_at DESC')
+    @videos = current_user.videos.order('created_at DESC')
   end
 
   def new
