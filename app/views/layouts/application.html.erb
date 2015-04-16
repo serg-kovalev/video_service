@@ -2,33 +2,54 @@
 <html>
 <head>
   <title>Video Service</title>
+  <meta charset="utf-8">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-  <div class="navbar">
-    <div class="container">
-      <ul class="navbar-right">
-        <% if user_signed_in? %>
+  <div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <%= link_to 'Video Service', root_path, class: 'navbar-brand' %>
+    </div>
+    <ul class="nav navbar-nav">
+      <% if user_signed_in? %>
         <li><%= link_to current_user.name, current_user %></li>
+        <li><%= link_to 'Videos', root_path %></li>
+        <li><%= link_to 'Add Video', new_video_path %></li>
+        <li><%= link_to 'Upload Video', new_video_upload_path %></li>
         <li><%= link_to "Logout", destroy_user_session_path %></li>
         <% else %>
         <li><%= link_to "Sign in", new_user_session_path %></li>
         <% end %>
-      </ul>
-    </div>
+    </ul>
   </div>
+</div>
 
-
-  <div class="container">
-    <div class="page-header">
-      <%= yield %>
+<div class="container">
+  <% flash.each do |key, value| %>
+    <% key = case key
+      when 'alert'
+        'warning'
+      when 'notice'
+        'info'
+      else
+        key
+      end %>
+    <div class="alert alert-<%= key %>" role="alert">
+      <%= value %>
     </div>
+  <% end %>
+
+  <%= yield %>
+</div>
+
+<div class="panel" style="margin-top: 10px;">
+  <div class="panel-body">
+    <p class="text-muted text-right">Created by <a href="http://github.com/serg-kovalev" target="_blank">Siarhei Kavaliou</a></p>
   </div>
+</div>
 
 </body>
 </html>

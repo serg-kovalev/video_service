@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150414194625) do
+ActiveRecord::Schema.define(version: 20150415190538) do
 
   create_table "authorizations", force: :cascade do |t|
     t.string   "provider"
@@ -49,5 +49,20 @@ ActiveRecord::Schema.define(version: 20150414194625) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "videos", force: :cascade do |t|
+    t.string   "link"
+    t.string   "title"
+    t.datetime "published_at"
+    t.integer  "likes"
+    t.integer  "dislikes"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "videos", ["uid"], name: "index_videos_on_uid"
+  add_index "videos", ["user_id"], name: "index_videos_on_user_id"
 
 end

@@ -28,3 +28,10 @@ en:
   messages:
     logged_in: 'You have successfully logged in.'
     user_updated: 'User was successfully updated.'
+    thx_for_sharing: 'Thanks for sharing your video!'
+    please_auth_via_google: "Please %{link} via your Google account to continue."
+    errors_found: 'The following errors were found while submitting the form:'
+  tips:
+    video_link: 'A link to the video on YouTube.'
+  labels:
+    authorize: authorize

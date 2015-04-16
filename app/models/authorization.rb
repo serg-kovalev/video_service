@@ -2,6 +2,10 @@ class Authorization < ActiveRecord::Base
   belongs_to :user
   after_create :fetch_details
 
+  scope :google_auth, ->(user_id) {
+    where(user_id: user_id, provider: 'google_oauth2')
+  }
+
   def fetch_details
     self.send("fetch_details_from_#{self.provider.downcase}")
   end

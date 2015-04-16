@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
   validates_presence_of :email
   has_many :authorizations, dependent: :destroy
+  has_many :videos, dependent: :destroy
 
   def self.new_with_session(params,session)
     if session['devise.user_attributes']
@@ -16,6 +17,27 @@ class User < ActiveRecord::Base
     else
       super
     end
+  end
+
+  def google_auth
+    authorizations.google_auth(id).limit(1).first
+  end
+  
+  def has_google_connection?
+    unless self.google_auth.nil?
+      @account = Yt::Account.new access_token: google_auth.token unless 
+        @account && @account.access_token == google_auth.token
+      begin
+        @account.email
+        true
+      rescue Yt::Errors::Unauthorized => e
+        false
+      end
+    end
+  end
+
+  def get_yt_connection
+    @account if has_google_connection?
   end
 
   def self.from_omniauth(auth, current_user)

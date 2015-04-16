@@ -41,6 +41,8 @@ gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-facebook', '~> 2.0.1'
 gem 'omniauth-google-oauth2', '~> 0.2.6'
 gem 'simple_form', '~> 3.1.0'
+gem 'bootstrap-sass', '~> 3.3.4'
+gem 'active_type', '~> 0.3.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
