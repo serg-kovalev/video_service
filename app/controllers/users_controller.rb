@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     # byebug
-    Rails.logger.info user_params.inspect
     @user.assign_attributes(user_params)
     if @user.save
       redirect_to @user, notice: t('messages.user_updated')

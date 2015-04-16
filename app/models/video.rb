@@ -8,7 +8,6 @@ class Video < ActiveRecord::Base
   private
   def add_details
     video = Yt::Video.new auth: user.get_yt_connection, url: link
-    Rails.logger.info video.inspect
     self.uid = video.id
     self.title = video.title
     self.likes = video.like_count

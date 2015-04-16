@@ -2,7 +2,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_filter :authenticate_user!
 
   def all
-    Rails.logger.info env["omniauth.auth"].inspect
     user = User.from_omniauth(env['omniauth.auth'], current_user)
     if user.persisted?
       flash[:notice] = I18n.t('messages.logged_in')
