@@ -20,3 +20,11 @@ If you want to upload video you should:
 
     4.2 API keys: A request that does not provide an OAuth 2.0 token must send an API key. The key identifies your project and provides API access, quota, and reports.
     If the key type you need does not already exist, create an API key by selecting Create New Key and then selecting the appropriate key type. Then enter the additional data required for that key type.
+
+Environment variables
+---------------------
+`GOOGLE_KEY` (Oauth2 authorization)
+`GOOGLE_SECRET`
+`FACEBOOK_KEY`
+`FACEBOOK_SECRET`
+`SECRET_KEY_BASE` (for production only)
